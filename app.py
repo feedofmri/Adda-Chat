@@ -20,15 +20,13 @@ users = {
     "user10": "password10"
 }
 
-area_ids = {
-    "area1": "id1",
-    "area2": "id2",
-    "area3": "id3",
-    "area4": "id4",
-    "area5": "id5",
+areas = {
+    "area1": {"name": "Work", "size": "20"},
+    "area2": {"name": "Friends", "size": "15"},
+    "area3": {"name": "Family", "size": "10"},
+    "area4": {"name": "Study Group", "size": "25"},
+    "area5": {"name": "Hobby Club", "size": "30"}
 }
-
-areas = {}
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -48,6 +46,7 @@ def home():
     return render_template('home.html')
 
 @app.route('/join', methods=['GET', 'POST'])
+@app.route('/join', methods=['GET', 'POST'])
 def join():
     if 'username' not in session:
         return redirect('/')
@@ -57,12 +56,12 @@ def join():
     if request.method == 'POST':
         area_id = request.form.get('area_id')
         
-        if area_id in area_ids and area_ids[area_id] == 'id':
-            return render_template('area.html', username=username)
+        if area_id in areas:
+            return render_template('area.html', username=username, area_name=areas[area_id]["name"])
         elif 'create' in request.form:
             return redirect('/create')
         else:
-            return render_template('join.html', error='Invalid area id!')
+            return render_template('join.html', username=username, error='Invalid area id!')
     
     return render_template('join.html', username=username)
 

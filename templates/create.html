@@ -19,34 +19,27 @@
     <div class="area_size">
         <label for="area_size">Area Size:</label>
         <div class="buttons">
-            <button type="button" name="area_size" value="5" onclick="selectButton(this)" class="area_btn">5</button>
             <button type="button" name="area_size" value="10" onclick="selectButton(this)" class="area_btn">10</button>
             <button type="button" name="area_size" value="20" onclick="selectButton(this)" class="area_btn">20</button>
+            <button type="button" name="area_size" value="30" onclick="selectButton(this)" class="area_btn">30</button>
             <input type="hidden" id="selected_area_size" name="area_size" value="">
-
         </div>
     </div>
     <div class="buttons">
-        <button type="submit" name="cancel" class="btn">Cancel</button>
+        <button type="button" name="cancel" class="btn" onclick="history.back()">Cancel</button>
         <button type="submit" name="create" class="btn">Create</button>
     </div>
 </form>
 
 <script>
     function selectButton(button) {
-        // Remove 'selected' class from all buttons
         var buttons = document.querySelectorAll('.area_btn');
         buttons.forEach(function(btn) {
             btn.classList.remove('selected');
         });
-    
-        // Add 'selected' class to the clicked button
         button.classList.add('selected');
-    
-        // Set the value of the hidden input field to the clicked button's value
         document.getElementById('selected_area_size').value = button.value;
     }
-    
 </script>
 
 {% endblock %}
