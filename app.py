@@ -1,32 +1,16 @@
 from flask import Flask, request, render_template, session, redirect
 from flask_socketio import join_room, leave_room, send, emit, SocketIO
-import random
-from string import ascii_letters, digits
+import json
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "sdgksdjg"
 socketio = SocketIO(app)
 
-users = {
-    "user1": "password1",
-    "user2": "password2",
-    "user3": "password3",
-    "user4": "password4",
-    "user5": "password5",
-    "user6": "password6",
-    "user7": "password7",
-    "user8": "password8",
-    "user9": "password9",
-    "user10": "password10"
-}
+with open("data/users.json", "r") as users_file:
+    users = json.load(users_file)
 
-areas = {
-    "area1": {"name": "Work", "size": "20"},
-    "area2": {"name": "Friends", "size": "15"},
-    "area3": {"name": "Family", "size": "10"},
-    "area4": {"name": "Study Group", "size": "25"},
-    "area5": {"name": "Hobby Club", "size": "30"}
-}
+with open("data/areas.json", "r") as areas_file:
+    areas = json.load(areas_file)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -46,7 +30,6 @@ def home():
     return render_template('home.html')
 
 @app.route('/join', methods=['GET', 'POST'])
-@app.route('/join', methods=['GET', 'POST'])
 def join():
     if 'username' not in session:
         return redirect('/')
@@ -56,12 +39,12 @@ def join():
     if request.method == 'POST':
         area_id = request.form.get('area_id')
         
-        if area_id in areas:
-            return render_template('area.html', username=username, area_name=areas[area_id]["name"])
+        if area_id in areas and areas[area_id] == area_id:
+            return render_template('area.html', username=username)
         elif 'create' in request.form:
             return redirect('/create')
         else:
-            return render_template('join.html', username=username, error='Invalid area id!')
+            return render_template('join.html', error='Invalid area id!')
     
     return render_template('join.html', username=username)
 
@@ -79,8 +62,12 @@ def create():
             area_name = request.form.get('area_name')
             area_id = request.form.get('area_id')
             area_size = request.form.get('area_size')
-            print(area_name, area_id, area_size)
             areas[area_id] = {"name": area_name, "size": area_size}
+            
+            
+            with open("data/areas.json", "w") as areas_file:
+                json.dump(areas, areas_file)
+                
             return render_template('area.html', username=username)
     
     return render_template('create.html', username=username)
