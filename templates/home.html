@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" class="forms">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username"
+        placeholder="username"
+        name="username" value="{{username}}">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password"
+        placeholder="password"
+        name="password" value="{{password}}">
+    </div>
+    <div class="buttons">
+    <button type="submit" name="login" class="btn">Login</button>
+    </div>
+    {% if error %}
+    <p class="error">{{error}}</p>
+    {% endif %}
+</form>
+{% endblock %}
+
+```python
+```

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="title">Join Area</hjson>
+
+<form method="post" class="forms">
+    <div>
+        <label for="area_id">Area ID:</label>
+        <input type="text" id="area_id"
+        placeholder="Enter Area ID"
+        name="area_id" value="{{area_id}}">
+    </div>
+    <div class="buttons">
+        <button type="submit" name="create" class="btn">Create</button>
+        <button type="submit" name="join" class="btn">Join</button>
+    </div>
+</form>
+{% endblock %}

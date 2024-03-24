@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="title">Create Area</hjson>
+
+<form method="post" class="forms">
+    <div>
+        <label for="area_id">Area ID:</label>
+        <input type="text" id="area_id"
+        placeholder="Enter Area ID"
+        name="area_id" value="{{area_id}}">
+    </div>
+    <div>
+        <label for="area_name">Area Name:</label>
+        <input type="text" id="area_name"
+        placeholder="Enter Area Name"
+        name="area_name" value="{{area_name}}">
+    </div>
+    <div class="area_size">
+        <label for="area_size">Area Size:</label>
+        <div class="buttons">
+            <button type="button" name="area_size" value="5"  class="area_btn">5</button>
+            <button type="button" name="area_size" value="10"  class="area_btn">10</button>
+            <button type="button" name="area_size" value="20"  class="area_btn">20</button>
+        </div>
+        </div>
+    <div class="buttons">
+        <button type="submit" name="cancel" class="btn">Cancel</button>
+        <button type="submit" name="create" class="btn">Create</button>
+    </div>
+</form>
+{% endblock %}
