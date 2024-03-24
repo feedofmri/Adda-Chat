@@ -22,6 +22,12 @@ input:focus {
     margin-top: 60px;
 
 }
+.greeting{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 20px;
+}
 .logo{
         height: 40px;
         margin: 0 auto;
@@ -58,10 +64,20 @@ form{
     padding-bottom: 15px;
     border-radius: 5px;
 }
+.btn:hover{
+    cursor: pointer;
+    background-color: #006043;
+}
+
 .area_btn{
     border: 1px solid #00825C;
     padding: 15px;
     border-radius: 5px;
+}
+.area_btn:hover{
+    cursor: pointer;
+    background-color: #00825C;
+    color: white;
 }
 
 .area_size{
@@ -71,4 +87,9 @@ form{
     align-items: center;
     justify-content: center;
     gap: 30px;
+}
+
+.selected {
+    background-color: #00825C;
+    color: white;
 }

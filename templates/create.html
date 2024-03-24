@@ -1,32 +1,52 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="title">Create Area</hjson>
+<h3 class="title">Create Area</h3>
 
 <form method="post" class="forms">
     <div>
         <label for="area_id">Area ID:</label>
         <input type="text" id="area_id"
         placeholder="Enter Area ID"
-        name="area_id" value="{{area_id}}">
+        name="area_id" value="{{ area_id }}">
     </div>
     <div>
         <label for="area_name">Area Name:</label>
         <input type="text" id="area_name"
         placeholder="Enter Area Name"
-        name="area_name" value="{{area_name}}">
+        name="area_name" value="{{ area_name }}">
     </div>
     <div class="area_size">
         <label for="area_size">Area Size:</label>
         <div class="buttons">
-            <button type="button" name="area_size" value="5"  class="area_btn">5</button>
-            <button type="button" name="area_size" value="10"  class="area_btn">10</button>
-            <button type="button" name="area_size" value="20"  class="area_btn">20</button>
+            <button type="button" name="area_size" value="5" onclick="selectButton(this)" class="area_btn">5</button>
+            <button type="button" name="area_size" value="10" onclick="selectButton(this)" class="area_btn">10</button>
+            <button type="button" name="area_size" value="20" onclick="selectButton(this)" class="area_btn">20</button>
+            <input type="hidden" id="selected_area_size" name="area_size" value="">
+
         </div>
-        </div>
+    </div>
     <div class="buttons">
         <button type="submit" name="cancel" class="btn">Cancel</button>
         <button type="submit" name="create" class="btn">Create</button>
     </div>
 </form>
+
+<script>
+    function selectButton(button) {
+        // Remove 'selected' class from all buttons
+        var buttons = document.querySelectorAll('.area_btn');
+        buttons.forEach(function(btn) {
+            btn.classList.remove('selected');
+        });
+    
+        // Add 'selected' class to the clicked button
+        button.classList.add('selected');
+    
+        // Set the value of the hidden input field to the clicked button's value
+        document.getElementById('selected_area_size').value = button.value;
+    }
+    
+</script>
+
 {% endblock %}

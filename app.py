@@ -3,7 +3,6 @@ from flask_socketio import join_room, leave_room, send, emit, SocketIO
 import random
 from string import ascii_letters, digits
 
-
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "sdgksdjg"
 socketio = SocketIO(app)
@@ -29,51 +28,63 @@ area_ids = {
     "area5": "id5",
 }
 
-    
+areas = {}
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    home = True
-    join = False
-    create = False
-    area = False
-    
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        area_id = request.form.get('area_id')
         
         if not username or not password:
             return render_template('home.html', error='Please fill in all fields!')
         
-        if home and 'login' in request.form:
-            if username in users and users[username] == password:
-                session['username'] = username
-                join = True
-                home = False
-                return render_template('join.html', username=username)
-            else:
-                return render_template('home.html', error='Invalid username or password!')
-            
-        if join and 'join' in request.form:
-            if area_ids[area_id] == id:
-                area_ids[area_id] = id
-                create = True
-                join = False
-                return render_template('create.html', username=username)
-            else:
-                return render_template('join.html', error='Invalid area id!')
-            
-        if join and 'create' in request.form:
-            return render_template('create.html', username=username)
+        if username in users and users[username] == password:
+            session['username'] = username
+            return redirect('/join')
+        else:
+            return render_template('home.html', error='Invalid username or password!')
     
-    if home:
-        return render_template('home.html')
-    elif join:
-        return render_template('join.html')
-    elif create:
-        return render_template('create.html')
-    elif area:
-        return render_template('area.html')
+    return render_template('home.html')
+
+@app.route('/join', methods=['GET', 'POST'])
+def join():
+    if 'username' not in session:
+        return redirect('/')
+    
+    username = session['username']
+    
+    if request.method == 'POST':
+        area_id = request.form.get('area_id')
+        
+        if area_id in area_ids and area_ids[area_id] == 'id':
+            return render_template('area.html', username=username)
+        elif 'create' in request.form:
+            return redirect('/create')
+        else:
+            return render_template('join.html', error='Invalid area id!')
+    
+    return render_template('join.html', username=username)
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    if 'username' not in session:
+        return redirect('/')
+    
+    username = session['username']
+    
+    if request.method == 'POST':
+        if 'cancel' in request.form:
+            return redirect('/join')
+        elif 'create' in request.form:
+            area_name = request.form.get('area_name')
+            area_id = request.form.get('area_id')
+            area_size = request.form.get('area_size')
+            print(area_name, area_id, area_size)
+            areas[area_id] = {"name": area_name, "size": area_size}
+            return render_template('area.html', username=username)
+    
+    return render_template('create.html', username=username)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True)
