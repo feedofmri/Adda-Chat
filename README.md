@@ -28,6 +28,9 @@ Adda is a dynamic web chatting repository developed using Flask and Socket.IO, p
 - **Enhanced Room Management:** Add functionalities for room moderation, such as kicking users and managing permissions.
 - **Improved UI/UX:** Continuously enhance the user interface and experience to provide a more visually appealing and intuitive chatting environment.
 
+## Credits
+Developed by [Md. Rubayet Islam](https://github.com/feedofmri)
+
 ## License:
 This project is licensed under the [MIT License](LICENSE).
 
