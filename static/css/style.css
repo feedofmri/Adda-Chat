@@ -90,6 +90,19 @@ form{
     color: white;
 }
 
+.send_btn{
+    background-color: #00825C;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+}
+.send_btn:hover{
+    cursor: pointer;
+    background-color: #006043;
+    color: white;
+}
+
 .area_size{
     width: 100%;
     display: flex;
@@ -102,4 +115,32 @@ form{
 .selected {
     background-color: #00825C;
     color: white;
+}
+.content{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.chat-box{
+    display: flex;
+    flex-direction: column;
+    border: #00825C 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+    align-items: stretch;
+    height: 65vh;
+    overflow-y: auto;
+}
+
+.chat-input{
+    display: flex;
+    flex-direction: row;
+    border: #00825C 1px solid;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#message{
+    flex: 1;
+    border: none;
 }

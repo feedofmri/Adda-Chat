@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, session, redirect
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, leave_room, join_room, send
+
 import json
 
 app = Flask(__name__)
@@ -86,9 +87,25 @@ def area(area_id):
     if request.method == 'POST':
         if 'leave' in request.form:
             return redirect('/join')
+        if 'logout' in request.form:
+            return redirect('/')
         
         
     return render_template('area.html', username=username, area_id=area_id, area_name=areas[area_id]['name'], area_size=areas[area_id]['size'])
+
+@socketio.on('connect')
+def connect(auth):
+    area = request.args.get('area')
+    username = request.args.get('username')
+    if not area or not username:
+        return False
+    if area not in areas:
+        leave_room(area)
+        return False
+    join_room(area)
+    send(username + ' has joined the area.', room=area)
+    print(f"{username} has joined the area {area}")
+
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True)

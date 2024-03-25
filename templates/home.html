@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
+<header>
+    <img src="{{url_for('static', filename='images/logo.png')}}" alt="Logo" class="logo">
+</header>
+
 <form method="post" class="forms">
     <div>
         <label for="username">Username:</label>

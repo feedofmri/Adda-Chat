@@ -1,28 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Area</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
-            integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
-            crossorigin="anonymous">
 
-    </script>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 <header>
-    
     <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="area_logo">
-    <h1>{{ area_name }}</h1>
+    <h2>{{ area_name }}</h2>
     <div class="buttons">
-        <button id="logout" name="logout" class="area_btn">Logout</button>
-        <button id="leave" name="leave" class="area_btn">Leave</button>	
+        <button id="logout" name="logout" class="area_btn" type="button">Logout</button>
+        <button id="leave" name="leave" class="area_btn" type="button">Leave</button>
     </div>
 </header>
 <div class="content">
-    <h1 class="greeting">Welcome, {{ username }}</h1>
-    <!-- Additional content for the area page goes here -->
+    <div class= "chat">
+        <div class="chat-box" id="chat-box">
+
+        </div>
+        <div class="chat-input">
+            <input type="text" rows="3" id="message" name="message" placeholder="Type a message...">
+            <button id="send" name="send" class="send_btn" onClick="sendMessage()">Send</button>
+        </div>
 </div>
-</body>
-</html>
+<script>
+    var socketio = io()
+             const sendMessage = () => {
+                 console.log("Sending message");
+             }
+</script>
+{% endblock %}

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
+<header>
+    <img src="{{url_for('static', filename='images/logo.png')}}" alt="Logo" class="logo">
+</header>
+
 <h1 class="title">Join Area</h1>
 <h1 class="greeting">Welcome, {{username}}</h1>
 
