@@ -1,8 +1,1 @@
-{
-    "area1": {"name": "Work", "size": "20"},
-    "area2": {"name": "Friends", "size": "15"},
-    "area3": {"name": "Family", "size": "10"},
-    "area4": {"name": "Study Group", "size": "25"},
-    "area5": {"name": "Hobby Club", "size": "30"},
-    "id1": {"name": "areaa5", "size": "20"}
-}
+{"area1": {"name": "Work", "size": "20"}, "area2": {"name": "Friends", "size": "15"}, "area3": {"name": "Family", "size": "10"}, "area4": {"name": "Study Group", "size": "25"}, "area5": {"name": "Hobby Club", "size": "30"}, "id1": {"name": "areaa5", "size": "20"}, "id2": {"name": "area6", "size": "10"}, "id3": {"name": "areaa5", "size": "10"}}

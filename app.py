@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, session, redirect
-from flask_socketio import join_room, leave_room, send, emit, SocketIO
+from flask_socketio import SocketIO
 import json
 
 app = Flask(__name__)
@@ -37,13 +37,13 @@ def join():
     username = session['username']
     
     if request.method == 'POST':
-        areaid = request.form.get('areaid')
+        area_id = request.form.get('area_id')
         if 'create' in request.form:
             return redirect('/create')
         
         elif 'join' in request.form:
-            if areaid in areas:
-                return render_template('area.html', username=username)
+            if area_id in areas:
+                return redirect('/area/' + area_id)
             
             else:
                 return render_template('join.html', error='Invalid area id!')
@@ -52,10 +52,10 @@ def join():
 
 @app.route('/create', methods=['GET', 'POST'])
 def create():
-    if 'username' not in session:
+    if 'username' not in session:  # Access the session keyword
         return redirect('/')
     
-    username = session['username']
+    username = session['username']  # Access the session keyword
     
     if request.method == 'POST':
         if 'cancel' in request.form:
@@ -70,9 +70,25 @@ def create():
             with open("data/areas.json", "w") as areas_file:
                 json.dump(areas, areas_file)
                 
-            return render_template('area.html', username=username)
+            return redirect('/area/' + area_id)
     
     return render_template('create.html', username=username)
+
+@app.route('/area/<area_id>', methods=['GET', 'POST'])
+def area(area_id):
+    if 'username' not in session:
+        return redirect('/')
+    if area_id not in areas:
+        return redirect('/join')
+    
+    username = session['username']
+    
+    if request.method == 'POST':
+        if 'leave' in request.form:
+            return redirect('/join')
+        
+        
+    return render_template('area.html', username=username, area_id=area_id, area_name=areas[area_id]['name'], area_size=areas[area_id]['size'])
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, allow_unsafe_werkzeug=True)

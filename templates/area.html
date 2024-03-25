@@ -7,14 +7,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
             integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
             crossorigin="anonymous">
+
     </script>
 </head>
 <body>
 <header>
-    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+    
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="area_logo">
+    <h1>{{ area_name }}</h1>
+    <div class="buttons">
+        <button id="logout" name="logout" class="area_btn">Logout</button>
+        <button id="leave" name="leave" class="area_btn">Leave</button>	
+    </div>
 </header>
 <div class="content">
-    <h3 class="title">Area: {{ area_name }}</h3>
     <h1 class="greeting">Welcome, {{ username }}</h1>
     <!-- Additional content for the area page goes here -->
 </div>

@@ -15,10 +15,16 @@ input:focus {
     outline: none;
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3%;
+}
+
 .title{
     text-align: center;
-    font-size: 32px;
-    font-weight: 600;
     margin-top: 60px;
 
 }
@@ -33,6 +39,10 @@ input:focus {
         margin: 0 auto;
         display: block;
         margin-top: 50px;
+}
+.area_logo{
+    height: 40px;
+    display: block;
 }
 form{
     text-align: center;

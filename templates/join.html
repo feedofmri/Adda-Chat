@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3 class="title">Join Area</hjson>
+<h1 class="title">Join Area</h1>
 <h1 class="greeting">Welcome, {{username}}</h1>
 
 <form method="post" class="forms">
     <div>
-        <label for="areaid">Area ID:</label>
-        <input type="text" id="areaid"
+        <label for="area_id">Area ID:</label>
+        <input type="text" id="area_id"
         placeholder="Enter Area ID"
-        name="areaid" value="{{areaid}}">
+        name="area_id" value="{{area_id}}">
     </div>
     <div class="buttons">
         <button type="submit" name="create" class="btn">Create</button>
