@@ -2,14 +2,14 @@
 {% block content %}
 
 <h3 class="title">Join Area</hjson>
-<h1 class="greeting">Welcome, {{ username }}</h1>
+<h1 class="greeting">Welcome, {{username}}</h1>
 
 <form method="post" class="forms">
     <div>
-        <label for="area_id">Area ID:</label>
-        <input type="text" id="area_id"
+        <label for="areaid">Area ID:</label>
+        <input type="text" id="areaid"
         placeholder="Enter Area ID"
-        name="area_id" value="{{area_id}}">
+        name="areaid" value="{{areaid}}">
     </div>
     <div class="buttons">
         <button type="submit" name="create" class="btn">Create</button>

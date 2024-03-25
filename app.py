@@ -37,14 +37,16 @@ def join():
     username = session['username']
     
     if request.method == 'POST':
-        area_id = request.form.get('area_id')
-        
-        if area_id in areas and areas[area_id] == area_id:
-            return render_template('area.html', username=username)
-        elif 'create' in request.form:
+        areaid = request.form.get('areaid')
+        if 'create' in request.form:
             return redirect('/create')
-        else:
-            return render_template('join.html', error='Invalid area id!')
+        
+        elif 'join' in request.form:
+            if areaid in areas:
+                return render_template('area.html', username=username)
+            
+            else:
+                return render_template('join.html', error='Invalid area id!')
     
     return render_template('join.html', username=username)
 
