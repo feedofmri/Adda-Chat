@@ -1,5 +1,7 @@
 # Adda: Real-time Web Chatting Application
 
+![Adda_Cover](cover.jpg)
+
 Adda is a dynamic web chatting repository developed using Flask and Socket.IO, providing users with the flexibility to seamlessly join existing chat rooms or create new ones based on their preferences. With Adda, users can engage in real-time conversations with others, fostering communication and collaboration in various contexts.
 
 ## Key Features:
